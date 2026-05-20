@@ -13,19 +13,17 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 export default function HelpScreen() {
   return (
     <SafeAreaView style={styles.container}>
+
+      <Text style={styles.heading}>
+        Help & Support
+      </Text>
+
+      <Text style={styles.subHeading}>
+        How can we help you today?
+      </Text>
       <ScrollView
         showsVerticalScrollIndicator={false}
       >
-        {/* Header */}
-        <Text style={styles.heading}>
-          Help & Support
-        </Text>
-
-        <Text style={styles.subHeading}>
-          How can we help you today?
-        </Text>
-
-        {/* Help Cards */}
         <TouchableOpacity style={styles.card}>
           <View style={styles.iconContainer}>
             <Ionicons
@@ -107,7 +105,6 @@ export default function HelpScreen() {
           />
         </TouchableOpacity>
 
-        {/* FAQ Section */}
         <Text style={styles.faqHeading}>
           Frequently Asked Questions
         </Text>

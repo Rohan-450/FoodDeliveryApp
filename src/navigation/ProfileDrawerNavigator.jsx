@@ -17,7 +17,11 @@ export default function ProfileDrawerNavigator() {
       )}
       screenOptions={{
         drawerActiveBackgroundColor: '#FFF4EC',
-    drawerActiveTintColor: '#FF6B00',
+        drawerActiveTintColor: '#FF6B00',
+        headerStyle: {
+          backgroundColor: '#ff6b00',
+        },
+        headerTintColor: '#fff',
       }}
     >
       <Drawer.Screen
