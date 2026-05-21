@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Image,
@@ -18,102 +18,140 @@ export default function RestaurantDetailsScreen({
   navigation,
 }) {
   const { restaurant } = route.params;
-
   const { addToCart } = useCart();
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Image */}
-        <View>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 100 }}
+      >
+        {/* Restaurant Image */}
+        <View style={styles.imageContainer}>
           <Image
             source={{ uri: restaurant.image }}
             style={styles.image}
           />
+          <View style={styles.imageOverlay} />
         </View>
 
         {/* Content */}
         <View style={styles.content}>
-          <View style={styles.topRow}>
-            <Text style={styles.title}>
-              {restaurant.name}
-            </Text>
-
-            <View style={styles.ratingContainer}>
-              <Ionicons
-                name="star"
-                size={16}
-                color="#FFD700"
-              />
-
-              <Text style={styles.ratingText}>
-                {restaurant.rating}
-              </Text>
+          {/* Title and Rating */}
+          <View style={styles.titleSection}>
+            <View>
+              <Text style={styles.title}>{restaurant.name}</Text>
+              <Text style={styles.cuisine}>{restaurant.cuisine}</Text>
+            </View>
+            <View style={styles.ratingBadge}>
+              <Ionicons name="star" size={16} color="#FFD700" />
+              <Text style={styles.ratingText}>{restaurant.rating}</Text>
             </View>
           </View>
 
-          <Text style={styles.cuisine}>
-            {restaurant.cuisine}
-          </Text>
-
-          <Text style={styles.price}>
-            ₹ {restaurant.price} for one
-          </Text>
-
-          {/* Description */}
-          <Text style={styles.sectionTitle}>
-            About Restaurant
-          </Text>
-
-          <Text style={styles.description}>
-            Enjoy delicious food made with fresh
-            ingredients and delivered hot to your
-            doorstep. Experience premium taste,
-            quick delivery, and amazing service.
-          </Text>
-
-          {/* Delivery Info */}
-          <View style={styles.infoContainer}>
-            <View style={styles.infoCard}>
-              <Ionicons
-                name="time-outline"
-                size={24}
-                color="#FF6B00"
-              />
-
-              <Text style={styles.infoText}>
-                30 mins
-              </Text>
+          {/* Info Pills */}
+          <View style={styles.infoPills}>
+            <View style={styles.pill}>
+              <Ionicons name="time-outline" size={16} color="#FF6B00" />
+              <Text style={styles.pillText}>30 mins</Text>
             </View>
+            <View style={styles.pill}>
+              <Ionicons name="bicycle-outline" size={16} color="#FF6B00" />
+              <Text style={styles.pillText}>Free Delivery</Text>
+            </View>
+            <View style={styles.pill}>
+              <Ionicons name="location-outline" size={16} color="#FF6B00" />
+              <Text style={styles.pillText}>3.2 km</Text>
+            </View>
+          </View>
 
-            <View style={styles.infoCard}>
-              <Ionicons
-                name="bicycle-outline"
-                size={24}
-                color="#FF6B00"
-              />
+          {/* Price */}
+          <View style={styles.priceSection}>
+            <Text style={styles.priceLabel}>Average Price</Text>
+            <Text style={styles.price}>₹{restaurant.price}</Text>
+            <Text style={styles.priceSubtext}>per person</Text>
+          </View>
 
-              <Text style={styles.infoText}>
-                Free Delivery
-              </Text>
+          {/* Divider */}
+          <View style={styles.divider} />
+
+          {/* About Section */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>About Restaurant</Text>
+            <Text style={styles.description}>
+              Enjoy delicious food made with fresh ingredients and delivered
+              hot to your doorstep. Experience premium taste, quick delivery,
+              and amazing service.
+            </Text>
+          </View>
+
+          {/* Highlights */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Why order from here?</Text>
+            <View style={styles.highlightsList}>
+              {[
+                { icon: 'leaf-outline', text: 'Fresh Ingredients' },
+                { icon: 'flash-outline', text: 'Quick Delivery' },
+                { icon: 'star-outline', text: 'Top Rated Restaurant' },
+              ].map((item, index) => (
+                <View key={index} style={styles.highlightItem}>
+                  <View style={styles.highlightIcon}>
+                    <Ionicons name={item.icon} size={18} color="#FF6B00" />
+                  </View>
+                  <Text style={styles.highlightText}>{item.text}</Text>
+                </View>
+              ))}
+            </View>
+          </View>
+
+          {/* Menu Preview */}
+          <View style={styles.section}>
+            <View style={styles.menuHeader}>
+              <Text style={styles.sectionTitle}>Popular Items</Text>
+              <TouchableOpacity>
+                <Text style={styles.viewMenuLink}>View Menu</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.menuItems}>
+              {['Biryani', 'Butter Chicken', 'Naan', 'Garlic Naan', 'Mango Lassi'].map((item, index) => (
+                <View key={index} style={styles.menuItemTag}>
+                  <Text style={styles.menuItemText}>{item}</Text>
+                </View>
+              ))}
             </View>
           </View>
         </View>
       </ScrollView>
 
-      {/* Bottom Button */}
+      {/* Fixed Bottom Button */}
       <View style={styles.bottomContainer}>
-        <TouchableOpacity
-          style={styles.cartButton}
-          onPress={() => {
-            addToCart(restaurant);
+        <View style={styles.quantityControl}>
+          <TouchableOpacity
+            style={styles.quantityButton}
+            onPress={() => quantity > 1 && setQuantity(quantity - 1)}
+          >
+            <Ionicons name="remove" size={18} color="#FF6B00" />
+          </TouchableOpacity>
+          <Text style={styles.quantityText}>{quantity}</Text>
+          <TouchableOpacity
+            style={styles.quantityButton}
+            onPress={() => setQuantity(quantity + 1)}
+          >
+            <Ionicons name="add" size={18} color="#FF6B00" />
+          </TouchableOpacity>
+        </View>
 
+        <TouchableOpacity
+          style={styles.addToCartButton}
+          onPress={() => {
+            addToCart(restaurant, quantity);
             navigation.navigate('Cart');
           }}
         >
-          <Text style={styles.cartButtonText}>
-            Add To Cart
-          </Text>
+          <Ionicons name="bag-add-outline" size={20} color="#fff" />
+          <Text style={styles.addToCartText}>Add to Cart</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -124,111 +162,284 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: -45,
+    marginTop: -40,
+  },
+
+  // Header
+  header: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+
+  // Image
+  imageContainer: {
+    width: '100%',
+    height: 220,
+    position: 'relative',
   },
 
   image: {
     width: '100%',
-    height: 300,
-    marginTop: -20,
+    height: '100%',
   },
 
+  imageOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 100,
+    background: 'linear-gradient(transparent, white)',
+  },
+
+  // Content
   content: {
-    padding: 22,
+    paddingHorizontal: 16,
+    paddingTop: 20,
   },
 
-  topRow: {
+  titleSection: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    gap: 12,
   },
 
   title: {
-    fontSize: 30,
-    fontWeight: '800',
-    color: '#222',
-    flex: 1,
-  },
-
-  ratingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fffbf7',
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    borderRadius: 10,
-  },
-
-  ratingText: {
-    marginLeft: 5,
-    fontWeight: '700',
-    color: '#222',
+    fontSize: 28,
+    fontWeight: '900',
+    color: '#1a1a1a',
   },
 
   cuisine: {
-    marginTop: 10,
-    fontSize: 17,
-    color: '#666',
+    fontSize: 14,
+    color: '#999',
+    fontWeight: '600',
+    marginTop: 4,
   },
 
-  price: {
-    marginTop: 12,
-    fontSize: 20,
+  ratingBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFE8D6',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 12,
+    gap: 4,
+  },
+
+  ratingText: {
     fontWeight: '700',
     color: '#FF6B00',
+    fontSize: 14,
   },
 
-  sectionTitle: {
-    marginTop: 28,
-    fontSize: 22,
-    fontWeight: '800',
-    color: '#222',
-  },
-
-  description: {
-    marginTop: 12,
-    fontSize: 15,
-    lineHeight: 26,
-    color: '#666',
-  },
-
-  infoContainer: {
+  // Info Pills
+  infoPills: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 28,
+    gap: 8,
+    marginTop: 16,
   },
 
-  infoCard: {
-    width: '48%',
-    backgroundColor: '#F8F8F8',
-    borderRadius: 18,
-    paddingVertical: 22,
+  pill: {
+    flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: '#f5f5f5',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 12,
+    gap: 6,
   },
 
-  infoText: {
-    marginTop: 10,
-    fontWeight: '700',
+  pillText: {
+    fontSize: 12,
+    fontWeight: '600',
     color: '#333',
   },
 
-  bottomContainer: {
-    padding: 20,
-    borderTopWidth: 1,
-    borderTopColor: '#EEE',
+  // Price Section
+  priceSection: {
+    marginTop: 20,
+    paddingHorizontal: 12,
+    paddingVertical: 14,
+    backgroundColor: '#FFE8D6',
+    borderRadius: 14,
+    alignItems: 'center',
   },
 
-  cartButton: {
-    height: 58,
-    backgroundColor: '#FF6B00',
-    borderRadius: 18,
+  priceLabel: {
+    fontSize: 12,
+    color: '#FF6B00',
+    fontWeight: '600',
+  },
+
+  price: {
+    fontSize: 32,
+    fontWeight: '900',
+    color: '#FF6B00',
+    marginTop: 4,
+  },
+
+  priceSubtext: {
+    fontSize: 12,
+    color: '#FF6B00',
+    fontWeight: '500',
+    marginTop: 2,
+  },
+
+  // Divider
+  divider: {
+    height: 1,
+    backgroundColor: '#f0f0f0',
+    marginVertical: 20,
+  },
+
+  // Sections
+  section: {
+    marginBottom: 24,
+  },
+
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#1a1a1a',
+    marginBottom: 12,
+  },
+
+  description: {
+    fontSize: 14,
+    lineHeight: 22,
+    color: '#666',
+    fontWeight: '500',
+  },
+
+  // Highlights
+  highlightsList: {
+    gap: 12,
+  },
+
+  highlightItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+
+  highlightIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: '#FFE8D6',
     justifyContent: 'center',
     alignItems: 'center',
   },
 
-  cartButtonText: {
+  highlightText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#1a1a1a',
+  },
+
+  // Menu
+  menuHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+
+  viewMenuLink: {
+    color: '#FF6B00',
+    fontWeight: '700',
+    fontSize: 13,
+  },
+
+  menuItems: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+
+  menuItemTag: {
+    backgroundColor: '#f5f5f5',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#FFE8D6',
+  },
+
+  menuItemText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#333',
+  },
+
+  // Bottom Container
+  bottomContainer: {
+    position: 'absolute',
+    bottom: 15,
+    left: 0,
+    right: 0,
+    backgroundColor: '#fff',
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    paddingBottom: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#f0f0f0',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+
+  quantityControl: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5',
+    borderRadius: 12,
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+    gap: 12,
+  },
+
+  quantityButton: {
+    width: 32,
+    height: 32,
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  quantityText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#1a1a1a',
+    minWidth: 20,
+    textAlign: 'center',
+  },
+
+  addToCartButton: {
+    flex: 1,
+    height: 52,
+    backgroundColor: '#FF6B00',
+    borderRadius: 12,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 8,
+  },
+
+  addToCartText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '700',
   },
 });

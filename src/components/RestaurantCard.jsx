@@ -17,62 +17,51 @@ export default function RestaurantCard({
   return (
     <TouchableOpacity
       style={styles.card}
-      activeOpacity={0.9}
+      activeOpacity={0.7}
       onPress={onPress}
     >
-      <View>
+      <View style={styles.imageWrapper}>
         <Image
           source={{ uri: item.image }}
           style={styles.image}
         />
-        <View style={styles.ratingBadge}>
-          <Ionicons
-            name="star"
-            size={13}
-            color="#FFD700"
-          />
 
-          <Text style={styles.ratingText}>
-            {item.rating}
-          </Text>
+        <View style={styles.ratingBadge}>
+          <Ionicons name="star" size={12} color="#FFD700" />
+          <Text style={styles.ratingText}>{item.rating}</Text>
         </View>
       </View>
 
       <View style={styles.content}>
-        <Text style={styles.title}>
-          {item.name}
-        </Text>
+        <Text style={styles.title}>{item.name}</Text>
+        <Text style={styles.cuisine}>{item.cuisine}</Text>
 
-        <Text style={styles.cuisine}>
-          {item.cuisine}
-        </Text>
+        <View style={styles.metaRow}>
+          <View style={styles.leftMeta}>
+            <View style={styles.metaItem}>
+              <Ionicons
+                name="time-outline"
+                size={14}
+                color="#FF6B00"
+              />
+              <Text style={styles.metaText}>
+                25-30 mins
+              </Text>
+            </View>
 
-        <View style={styles.bottomRow}>
-          <View style={styles.deliveryContainer}>
-            <Ionicons
-              name="time-outline"
-              size={16}
-              color="#FF6B00"
-            />
-
-            <Text style={styles.deliveryText}>
-              25-30 mins
-            </Text>
+            <View style={styles.metaItem}>
+              <Ionicons
+                name="location-outline"
+                size={14}
+                color="#FF6B00"
+              />
+              <Text style={styles.metaText}>
+                3.2 km
+              </Text>
+            </View>
           </View>
-          <View style={styles.distanceContainer}>
-            <Ionicons
-              name="location-outline"
-              size={16}
-              color="#FF6B00"
-            />
-            <Text style={styles.distanceText}>
-              3.2 km
-            </Text>
-        </View>
-
-          <Text style={styles.price}>
-            ₹ {item.price}
-          </Text>
+          <View style={styles.metaDivider} />
+          <Text style={styles.price}>₹{item.price}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -82,42 +71,45 @@ export default function RestaurantCard({
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
-    borderRadius: 24,
+    borderRadius: 16,
     overflow: 'hidden',
-    marginBottom: 15,
-
+    marginBottom: 12,
+    marginHorizontal: 2,
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
+    elevation: 3,
+  },
 
-    elevation: 5,
+  imageWrapper: {
+    position: 'relative',
+    width: '100%',
+    height: 160,
   },
 
   image: {
     width: '100%',
-    height: 180,
+    height: '100%',
   },
 
   ratingBadge: {
     position: 'absolute',
-    top: 14,
-    right: 14,
-    backgroundColor: '#fff',
+    top: 10,
+    right: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.98)',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
     paddingVertical: 6,
-    borderRadius: 12,
+    borderRadius: 10,
+    gap: 3,
   },
 
   ratingText: {
-    marginLeft: 4,
-    fontWeight: '700',
+    fontWeight: '600',
     color: '#222',
+    fontSize: 12,
   },
 
   content: {
@@ -125,57 +117,51 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 22,
-    fontWeight: '800',
-    color: '#222',
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#1a1a1a',
+    marginBottom: 4,
   },
 
   cuisine: {
-    marginTop: 6,
-    fontSize: 13,
-    color: '#777',
+    fontSize: 12,
+    color: '#999',
+    fontWeight: '400',
+    marginBottom: 10,
   },
 
-  bottomRow: {
-    marginTop: 15,
+  metaRow: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  leftMeta: {
+    flexDirection: 'row',
     alignItems: 'center',
   },
 
-  deliveryContainer: {
+  metaItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFF4EC',
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    borderRadius: 10,
+    gap: 4,
+    marginRight: 14,
   },
 
-  deliveryText: {
-    marginLeft: 5,
-    fontSize: 13,
-    fontWeight: '600',
+  metaText: {
+    fontSize: 11,
+    fontWeight: '500',
     color: '#FF6B00',
   },
-  distanceContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#FFF4EC',
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    borderRadius: 10,
-    marginLeft: -10,
-  },
-  distanceText: {
-    marginLeft: 5,
-    fontSize: 13,
-    fontWeight: '600',
-    color: '#FF6B00',
+
+  metaDivider: {
+    width: 1,
+    height: 14,
+    backgroundColor: '#e0e0e0',
   },
 
   price: {
-    fontSize: 20,
-    fontWeight: '800',
+    fontSize: 14,
+    fontWeight: '700',
     color: '#FF6B00',
   },
 });

@@ -103,7 +103,7 @@ export default function HomeScreen({ navigation }) {
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 30 }}
+        contentContainerStyle={{ paddingBottom: 10 }}
       >
         {restaurants.map((item) => (
           <RestaurantCard
@@ -125,8 +125,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F8F8F8',
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     marginTop: -30,
+    marginBottom: -20,
   },
   profileImage: {
     width: 50,
@@ -218,12 +219,12 @@ categoriesContainer: {
 },
 
 categoryChip: {
-  backgroundColor: '#fff',
+  backgroundColor: '#ffe7c4',
   paddingVertical: 12,
-  paddingHorizontal: 18,
+  paddingHorizontal: 10,
   borderRadius: 16,
   marginRight: 12,
-  borderColor: '#eee',
+  borderColor: '#ff6f00',
   borderWidth: 1,
 },
 

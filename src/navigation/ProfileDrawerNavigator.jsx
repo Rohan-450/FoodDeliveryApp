@@ -3,8 +3,8 @@ import {
 } from '@react-navigation/drawer';
 import CustomDrawerContent from '../components/CustomDrawerContent';
 import HelpScreen from '../screens/drawer/HelpScreen';
+import MyOrdersScreen from '../screens/drawer/MyOrdersScreen';
 import SettingsScreen from '../screens/drawer/SettingsScreen';
-import OrdersScreen from '../screens/tabs/OrdersScreen';
 import ProfileScreen from '../screens/tabs/ProfileScreen';
 
 const Drawer = createDrawerNavigator();
@@ -12,6 +12,7 @@ const Drawer = createDrawerNavigator();
 export default function ProfileDrawerNavigator() {
   return (
     <Drawer.Navigator
+      initialRouteName="Profile"
       drawerContent={(props) => (
         <CustomDrawerContent {...props} />
       )}
@@ -31,7 +32,7 @@ export default function ProfileDrawerNavigator() {
 
       <Drawer.Screen
         name="My Orders"
-        component={OrdersScreen}
+        component={MyOrdersScreen}
       />
 
       <Drawer.Screen

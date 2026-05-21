@@ -1,5 +1,3 @@
-// src/screens/tabs/SearchScreen.jsx
-
 import React, { useState } from 'react';
 
 import {
@@ -30,7 +28,6 @@ export default function SearchScreen({
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header */}
       <Text style={styles.heading}>
         Search Restaurants
       </Text>
@@ -39,7 +36,6 @@ export default function SearchScreen({
         Discover your favorite food places
       </Text>
 
-      {/* Search Box */}
       <View style={styles.searchContainer}>
         <Ionicons
           name="search"
@@ -56,7 +52,6 @@ export default function SearchScreen({
         />
       </View>
 
-      {/* Restaurant List */}
       <FlatList
         data={filteredRestaurants}
         keyExtractor={(item) => item.id}
@@ -91,8 +86,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F8F8F8',
-    paddingHorizontal: 12,
+    paddingHorizontal: 8,
     paddingTop: 10,
+    marginBottom: -20,
   },
 
   heading: {
@@ -116,6 +112,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 24,
+    borderColor: '#ff6f00',
+    borderWidth: 1,
   },
 
   input: {

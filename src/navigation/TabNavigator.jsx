@@ -19,7 +19,7 @@ export default function TabNavigator() {
       getFocusedRouteNameFromRoute(route) ?? 'Home';
 
     if (
-      routeName === 'RestaurantDetail' ||
+      routeName === 'RestaurantDetails' ||
       routeName === 'Cart'
     ) {
       return { display: 'none' };
