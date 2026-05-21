@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { ActivityIndicator, View } from 'react-native';
 import { useAuth } from '../context/AuthContext';
 import AuthNavigator from './AuthNavigator';
-//import linking from './linking';
+import linking from './Linking';
 import TabNavigator from './TabNavigator';
 
 export default function RootNavigator() {
@@ -23,7 +23,7 @@ export default function RootNavigator() {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       {userToken ? <TabNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
