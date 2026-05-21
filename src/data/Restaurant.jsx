@@ -1,10 +1,8 @@
-// src/data/restaurants.js
-
 export const restaurants = [
   {
     id: '1',
     name: 'Burger Hub',
-    cuisine: 'Fast Food',
+    cuisine: 'Western',
     price: 250,
     rating: 4.5,
     image:
@@ -54,7 +52,7 @@ export const restaurants = [
   {
     id: '6',
     name: 'Momo Street',
-    cuisine: 'Snacks',
+    cuisine: 'Chinese',
     price: 180,
     rating: 4.7,
     image:

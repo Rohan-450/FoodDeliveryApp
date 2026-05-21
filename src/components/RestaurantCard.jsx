@@ -1,13 +1,11 @@
-// src/components/RestaurantCard.jsx
-
 import React from 'react';
 
 import {
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -22,14 +20,11 @@ export default function RestaurantCard({
       activeOpacity={0.9}
       onPress={onPress}
     >
-      {/* Restaurant Image */}
       <View>
         <Image
           source={{ uri: item.image }}
           style={styles.image}
         />
-
-        {/* Rating Badge */}
         <View style={styles.ratingBadge}>
           <Ionicons
             name="star"
@@ -43,19 +38,15 @@ export default function RestaurantCard({
         </View>
       </View>
 
-      {/* Content */}
       <View style={styles.content}>
-        {/* Name */}
         <Text style={styles.title}>
           {item.name}
         </Text>
 
-        {/* Cuisine */}
         <Text style={styles.cuisine}>
           {item.cuisine}
         </Text>
 
-        {/* Bottom Row */}
         <View style={styles.bottomRow}>
           <View style={styles.deliveryContainer}>
             <Ionicons
@@ -68,6 +59,16 @@ export default function RestaurantCard({
               25-30 mins
             </Text>
           </View>
+          <View style={styles.distanceContainer}>
+            <Ionicons
+              name="location-outline"
+              size={16}
+              color="#FF6B00"
+            />
+            <Text style={styles.distanceText}>
+              3.2 km
+            </Text>
+        </View>
 
           <Text style={styles.price}>
             ₹ {item.price}
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 24,
     overflow: 'hidden',
-    marginBottom: 20,
+    marginBottom: 15,
 
     shadowColor: '#000',
     shadowOffset: {
@@ -105,15 +106,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 14,
     right: 14,
-
     backgroundColor: '#fff',
-
     flexDirection: 'row',
     alignItems: 'center',
-
     paddingHorizontal: 10,
     paddingVertical: 6,
-
     borderRadius: 12,
   },
 
@@ -124,7 +121,7 @@ const styles = StyleSheet.create({
   },
 
   content: {
-    padding: 16,
+    padding: 12,
   },
 
   title: {
@@ -135,13 +132,12 @@ const styles = StyleSheet.create({
 
   cuisine: {
     marginTop: 6,
-    fontSize: 15,
+    fontSize: 13,
     color: '#777',
   },
 
   bottomRow: {
-    marginTop: 18,
-
+    marginTop: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -150,16 +146,27 @@ const styles = StyleSheet.create({
   deliveryContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-
     backgroundColor: '#FFF4EC',
-
     paddingHorizontal: 10,
     paddingVertical: 6,
-
     borderRadius: 10,
   },
 
   deliveryText: {
+    marginLeft: 5,
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#FF6B00',
+  },
+  distanceContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#FFF4EC',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 10,
+    marginLeft: -10,
+  },
+  distanceText: {
     marginLeft: 5,
     fontSize: 13,
     fontWeight: '600',

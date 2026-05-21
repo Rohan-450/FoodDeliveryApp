@@ -21,7 +21,6 @@ export default function HomeScreen({ navigation }) {
       <StatusBar barStyle="dark-content" />
 
 
-      {/* Header */}
       <View style={styles.header}>
         <View>
           <Text style={styles.welcomeText}>
@@ -49,20 +48,24 @@ export default function HomeScreen({ navigation }) {
         />
       </View>
 
-      {/* Promo Banner */}
       <View style={styles.banner}>
         <View style={{ flex: 1 }}>
           <Text style={styles.bannerTitle}>
-            Free Delivery 🍔
+            Grab 50% off
           </Text>
 
           <Text style={styles.bannerSubtitle}>
-            On all orders above ₹299
+            On your first order today!
           </Text>
         </View>
+        <Image
+          source={{
+            uri: 'https://cdn-icons-png.flaticon.com/512/5787/5787016.png',
+          }}
+          style={styles.bannerImage}
+        />
       </View>
 
-      {/* Categories */}
       <View style={styles.categoriesContainer}>
         <ScrollView
           horizontal
@@ -87,7 +90,6 @@ export default function HomeScreen({ navigation }) {
         </ScrollView>
       </View>
 
-      {/* Section Header */}
       <View style={styles.sectionHeader}>
         <Text style={styles.sectionTitle}>
           Popular Restaurants
@@ -103,7 +105,6 @@ export default function HomeScreen({ navigation }) {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 30 }}
       >
-        {/* Restaurant Cards */}
         {restaurants.map((item) => (
           <RestaurantCard
             key={item.id}
@@ -128,9 +129,9 @@ const styles = StyleSheet.create({
     marginTop: -30,
   },
   profileImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 35,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     borderWidth: 1,
     borderColor: '#FF6B00',
   },
@@ -143,7 +144,7 @@ const styles = StyleSheet.create({
   },
 
   welcomeText: {
-    fontSize: 28,
+    fontSize: 22,
     fontWeight: '800',
     color: '#222',
   },
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
   locationText: {
     marginLeft: 4,
     color: '#666',
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: '500',
   },
 
@@ -206,14 +207,14 @@ orderButtonText: {
 },
 
 bannerImage: {
-  width: 120,
-  height: 120,
-  borderRadius: 60,
+  width: 65,
+  height: 65,
+  borderRadius: 10,
   marginLeft: 10,
 },
 
 categoriesContainer: {
-  marginTop: 22,
+  marginTop: 15,
 },
 
 categoryChip: {
@@ -222,6 +223,8 @@ categoryChip: {
   paddingHorizontal: 18,
   borderRadius: 16,
   marginRight: 12,
+  borderColor: '#eee',
+  borderWidth: 1,
 },
 
 categoryText: {
@@ -248,7 +251,7 @@ categoryText: {
   },
 
   banner: {
-    backgroundColor: '#FF6B00',
+    backgroundColor: '#ffdbc2',
     borderRadius: 24,
     padding: 22,
     flexDirection: 'row',
@@ -257,15 +260,16 @@ categoryText: {
   },
 
   bannerTitle: {
-    color: '#fff',
+    color: '#FF6B00',
     fontSize: 26,
     fontWeight: '800',
   },
 
   bannerSubtitle: {
-    color: '#fff',
+    color: '#000000',
     marginTop: 6,
-    fontSize: 15,
+    fontSize: 13,
+    fontWeight: '600',
   },
 
   orderButton: {
@@ -283,7 +287,7 @@ categoryText: {
   },
 
   sectionHeader: {
-    marginTop: 30,
+    marginTop: 16,
     marginBottom: 18,
     flexDirection: 'row',
     justifyContent: 'space-between',
