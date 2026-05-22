@@ -12,7 +12,7 @@ Users can:
 - Manage profile/settings
 - Navigate through multiple navigator types
 
----
+
 
 # Project Overview
 
@@ -66,10 +66,6 @@ The UI is inspired by modern food delivery applications such as Swiggy and Zomat
 - Order history UI
 - Order filters
 - Reorder button
-
-## Search
-- Search restaurants
-- Reusable restaurant cards
 
 ## Profile Drawer
 - Profile screen
@@ -137,6 +133,18 @@ foodapp://restaurant/123
 ---
 
 # Screenshots
+<p>
+  <img src="./assets/screenshots/ss1.jpeg" width="200" />
+<img src="./assets/screenshots/ss2.jpeg" width="200" />
+<img src="./assets/screenshots/ss3.jpeg" width="200" />
+<img src="./assets/screenshots/ss4.jpeg" width="200" />
+<img src="./assets/screenshots/ss5.jpeg" width="200" />
+<img src="./assets/screenshots/ss6.jpeg" width="200" />
+<img src="./assets/screenshots/ss7.jpeg" width="200" />
+<img src="./assets/screenshots/ss8.jpeg" width="200" />
+<img src="./assets/screenshots/ss9.jpeg" width="200" />
+<img src="./assets/screenshots/ss10.jpeg" width="200" />
+<img src="./assets/screenshots/ss11.jpeg" width="200" />
+</p>
 
-```md
-```
+
