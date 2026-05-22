@@ -1,56 +1,142 @@
-# Welcome to your Expo app 👋
+# Food Delivery App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern Food Delivery mobile application built using React Native and Expo.  
+The app demonstrates complete navigation architecture using React Navigation including Stack, Bottom Tabs, Drawer Navigation, Authentication flow, and Deep Linking.
 
-## Get started
+Users can:
+- Browse restaurants
+- View restaurant details
+- Add items to cart
+- View orders
+- Search restaurants
+- Manage profile/settings
+- Navigate through multiple navigator types
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+# Project Overview
 
-2. Start the app
+This project was created as a React Native navigation practice application.
 
-   ```bash
-   npx expo start
-   ```
+The application focuses mainly on:
+- Nested navigation
+- Authentication flow
+- Deep linking
+- Reusable UI components
+- Context API state management
 
-In the output, you'll find options to open the app in a
+The UI is inspired by modern food delivery applications such as Swiggy and Zomato.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+# Tech Stack
 
-## Get a fresh project
+- React Native
+- Expo
+- React Navigation
+  - Stack Navigator
+  - Bottom Tab Navigator
+  - Drawer Navigator
+- Context API
+- AsyncStorage
+- Expo Vector Icons
+- Expo Linear Gradient
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
+# Features
+
+## Authentication Flow
+- Onboarding Screen
+- Login Screen
+- Persistent login using AsyncStorage
+
+## Home
+- Restaurant listing
+- Modern restaurant cards
+- Category section
+- Promotional banner
+
+## Restaurant Details
+- Restaurant information
+- Delivery details
+- Add to Cart
+
+## Orders
+- Order history UI
+- Order filters
+- Reorder button
+
+## Search
+- Search restaurants
+- Reusable restaurant cards
+
+## Profile Drawer
+- Profile screen
+- Settings screen
+- Help screen
+- Custom drawer UI
+
+## Navigation Patterns Used
+- Stack Navigation
+- Bottom Tabs
+- Drawer Navigation
+- Nested Navigators
+- Deep Linking
+
+---
+
+# Navigation Structure
+
+```text
+RootNavigator
+│
+├── AuthNavigator
+│   ├── OnboardingScreen
+│   └── LoginScreen
+│
+└── TabNavigator
+    │
+    ├── HomeTab
+    │   └── HomeStackNavigator
+    │       ├── HomeScreen
+    │       ├── RestaurantDetailsScreen
+    │       └── CartScreen
+    │
+    ├── SearchScreen
+    │
+    ├── OrdersScreen
+    │
+    └── ProfileDrawerNavigator
+        ├── ProfileScreen
+        ├── MyOrdersScreen
+        ├── SettingsScreen
+        └── HelpScreen
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-### Other setup steps
+# Deep Linking Setup
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+Deep linking is configured using React Navigation linking configuration.
 
-## Learn more
+Supported deep links:
 
-To learn more about developing your project with Expo, look at the following resources:
+```text
+foodapp://restaurant/123
+```
+# Assumptions Made
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Authentication is mocked using AsyncStorage.
+- Cart functionality is handled locally using Context API.
+- Restaurant and order data are stored as local JSON data.
+- No backend integration is included.
+- Payments are UI-only and not functional.
+- Search functionality is basic frontend filtering.
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+# Screenshots
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```md
+```
